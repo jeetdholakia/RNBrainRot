@@ -6,8 +6,9 @@ import {
   Image,
   StyleSheet,
   ViewStyle,
-  TextStyle,
 } from 'react-native';
+import {spacing, sizes} from '../styles/theme';
+import {layouts, containers, badges, text} from '../styles/common';
 
 interface TitleComponentProps {
   title?: string;
@@ -46,50 +47,19 @@ export const TitleComponent: React.FC<TitleComponentProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 26,
-    paddingVertical: 16,
+    ...layouts.rowBetween,
+    paddingHorizontal: spacing.xl,
+    paddingVertical: spacing.md,
   } as ViewStyle,
-  title: {
-    fontFamily: 'Inter_18pt-SemiBold',
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#022150',
-    letterSpacing: 0.48,
-  } as TextStyle,
+  title: text.heading,
   heartButton: {
     position: 'relative',
   } as ViewStyle,
-  heartIconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: '#F9FAFB',
-    justifyContent: 'center',
-    alignItems: 'center',
-  } as ViewStyle,
+  heartIconContainer: containers.circularButton(sizes.icon.lg),
   heartIcon: {
-    width: 25,
-    height: 20,
+    width: sizes.icon.md,
+    height: sizes.icon.sm,
   } as ViewStyle,
-  notificationBadge: {
-    position: 'absolute',
-    top: -2,
-    right: -2,
-    width: 18,
-    height: 18,
-    borderRadius: 9,
-    backgroundColor: '#FF0000',
-    justifyContent: 'center',
-    alignItems: 'center',
-  } as ViewStyle,
-  notificationText: {
-    fontFamily: 'Inter_18pt-SemiBold',
-    fontSize: 10,
-    fontWeight: '600',
-    color: '#FFFFFF',
-    letterSpacing: 0.2,
-  } as TextStyle,
+  notificationBadge: badges.notificationBadge,
+  notificationText: badges.notificationText,
 });
