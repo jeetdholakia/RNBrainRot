@@ -3,37 +3,34 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   StyleSheet,
   ViewStyle,
 } from 'react-native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import {spacing, sizes} from '../styles/theme';
 import {layouts, containers, badges, text} from '../styles/common';
 
 interface TitleComponentProps {
   title?: string;
   notificationCount?: number;
-  onHeartPress?: () => void;
+  onEnvelopePress?: () => void;
 }
 
 export const TitleComponent: React.FC<TitleComponentProps> = ({
   title = "Let's Explore",
   notificationCount = 2,
-  onHeartPress,
+  onEnvelopePress,
 }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity
-        style={styles.heartButton}
-        onPress={onHeartPress}
+        style={styles.envelopeButton}
+        onPress={onEnvelopePress}
         activeOpacity={0.7}>
-        <View style={styles.heartIconContainer}>
-          <Image
-            source={require('../assets/heart-icon.png')}
-            style={styles.heartIcon}
-            resizeMode="contain"
-          />
+        <View style={styles.envelopeIconContainer}>
+          <FontAwesomeIcon icon={faEnvelope} size={20} color="#E91E63" />
         </View>
         {notificationCount > 0 && (
           <View style={styles.notificationBadge}>
@@ -52,14 +49,10 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
   } as ViewStyle,
   title: text.heading,
-  heartButton: {
+  envelopeButton: {
     position: 'relative',
   } as ViewStyle,
-  heartIconContainer: containers.circularButton(sizes.icon.lg),
-  heartIcon: {
-    width: sizes.icon.md,
-    height: sizes.icon.sm,
-  } as ViewStyle,
+  envelopeIconContainer: containers.circularButton(sizes.icon.lg),
   notificationBadge: badges.notificationBadge,
   notificationText: badges.notificationText,
 });
