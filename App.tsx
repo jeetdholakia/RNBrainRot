@@ -11,6 +11,7 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import { TitleComponent } from './src/components/TitleComponent';
+import { UserStories } from './src/components/UserStories';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -37,6 +38,7 @@ function AppContent() {
         notificationCount={2}
         onHeartPress={handleHeartPress}
       />
+      <UserStories />
     </View>
   );
 }

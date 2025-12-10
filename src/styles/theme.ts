@@ -16,6 +16,10 @@ export const colors = {
   // Text
   textPrimary: '#022150',
   textWhite: '#FFFFFF',
+
+  // Story colors
+  storyBorderPink: '#E91E63',
+  storyInnerPink: '#F06292',
 };
 
 export const typography = {
@@ -60,5 +64,9 @@ export const sizes = {
   },
   badge: {
     sm: 18,
+  },
+  story: {
+    outer: 65,
+    inner: 59,
   },
 };
