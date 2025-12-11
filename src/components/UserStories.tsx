@@ -1,22 +1,66 @@
-import React from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {FlatList, StyleSheet, ViewStyle} from 'react-native';
 import {StoryItem} from './StoryItem';
 import {userStoriesData, UserStory} from '../data/userStories';
 import {spacing} from '../styles/theme';
 
+const ITEMS_PER_PAGE = 6;
+
 export const UserStories: React.FC = () => {
-  const renderStoryItem = ({item}: {item: UserStory}) => (
-    <StoryItem name={item.name} />
+  const [displayedStories, setDisplayedStories] = useState<UserStory[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+
+  // Initial load
+  useEffect(() => {
+    loadInitialStories();
+  }, [loadInitialStories]);
+
+  const loadInitialStories = useCallback(() => {
+    const initialStories = userStoriesData.slice(0, ITEMS_PER_PAGE);
+    setDisplayedStories(initialStories);
+    setCurrentPage(1);
+    setHasMore(initialStories.length < userStoriesData.length);
+  }, []);
+
+  const loadMoreStories = useCallback(() => {
+    if (!hasMore) {
+      return;
+    }
+
+    const startIndex = currentPage * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const newStories = userStoriesData.slice(startIndex, endIndex);
+
+    if (newStories.length > 0) {
+      setDisplayedStories(prevStories => [...prevStories, ...newStories]);
+      setCurrentPage(prevPage => prevPage + 1);
+      setHasMore(endIndex < userStoriesData.length);
+    } else {
+      setHasMore(false);
+    }
+  }, [currentPage, hasMore]);
+
+  const renderStoryItem = useCallback(
+    ({item}: {item: UserStory}) => <StoryItem name={item.name} />,
+    [],
+  );
+
+  const keyExtractor = useCallback(
+    (item: UserStory) => item.id.toString(),
+    [],
   );
 
   return (
     <FlatList
-      data={userStoriesData}
+      data={displayedStories}
       renderItem={renderStoryItem}
-      keyExtractor={item => item.id.toString()}
+      keyExtractor={keyExtractor}
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.listContent}
+      onEndReached={loadMoreStories}
+      onEndReachedThreshold={0.5}
     />
   );
 };

@@ -45,4 +45,48 @@ export const userStoriesData: UserStory[] = [
     id: 9,
     name: 'Lisa',
   },
+  {
+    id: 10,
+    name: 'James',
+  },
+  {
+    id: 11,
+    name: 'Sophia',
+  },
+  {
+    id: 12,
+    name: 'Ryan',
+  },
+  {
+    id: 13,
+    name: 'Isabella',
+  },
+  {
+    id: 14,
+    name: 'Lucas',
+  },
+  {
+    id: 15,
+    name: 'Mia',
+  },
+  {
+    id: 16,
+    name: 'Noah',
+  },
+  {
+    id: 17,
+    name: 'Ava',
+  },
+  {
+    id: 18,
+    name: 'Ethan',
+  },
+  {
+    id: 19,
+    name: 'Charlotte',
+  },
+  {
+    id: 20,
+    name: 'Mason',
+  },
 ];
