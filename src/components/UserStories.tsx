@@ -11,17 +11,17 @@ export const UserStories: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
-  // Initial load
-  useEffect(() => {
-    loadInitialStories();
-  }, [loadInitialStories]);
-
   const loadInitialStories = useCallback(() => {
     const initialStories = userStoriesData.slice(0, ITEMS_PER_PAGE);
     setDisplayedStories(initialStories);
     setCurrentPage(1);
     setHasMore(initialStories.length < userStoriesData.length);
   }, []);
+
+  // Initial load
+  useEffect(() => {
+    loadInitialStories();
+  }, [loadInitialStories]);
 
   const loadMoreStories = useCallback(() => {
     if (!hasMore) {
