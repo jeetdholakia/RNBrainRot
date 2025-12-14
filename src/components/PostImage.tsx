@@ -14,9 +14,13 @@ export const PostImage: React.FC<PostImageProps> = ({imageUrl: _imageUrl}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: sizes.postImage.width,
-    height: sizes.postImage.height,
+    // Use percentage width for responsiveness across all device sizes
+    width: '100%',
+    // Maintain aspect ratio from original design (327:220 = ~1.486)
+    aspectRatio: sizes.postImage.aspectRatio,
     backgroundColor: colors.postImageBackground,
     borderRadius: borderRadius.md,
+    // Ensure proper rendering
+    overflow: 'hidden',
   } as ViewStyle,
 });

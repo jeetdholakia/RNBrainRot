@@ -3,6 +3,7 @@ import {colors, typography, spacing, borderRadius, sizes} from './theme';
 
 /**
  * Common reusable style patterns
+ * All patterns use responsive values from theme
  */
 
 export const layouts = {
@@ -12,9 +13,24 @@ export const layouts = {
     alignItems: 'center',
   } as ViewStyle,
 
+  rowCenter: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  } as ViewStyle,
+
   centered: {
     justifyContent: 'center',
     alignItems: 'center',
+  } as ViewStyle,
+
+  flexRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  } as ViewStyle,
+
+  flexColumn: {
+    flexDirection: 'column',
   } as ViewStyle,
 };
 
@@ -26,6 +42,12 @@ export const containers = {
     backgroundColor: colors.backgroundLight,
     justifyContent: 'center',
     alignItems: 'center',
+  } as ViewStyle),
+
+  // Responsive container with percentage-based width
+  responsiveContainer: (widthPercentage: number = 100) => ({
+    width: `${widthPercentage}%`,
+    alignSelf: 'center',
   } as ViewStyle),
 };
 
@@ -58,5 +80,19 @@ export const text = {
     fontWeight: typography.fontWeight.semiBold,
     color: colors.textPrimary,
     letterSpacing: typography.letterSpacing.normal,
+  } as TextStyle,
+
+  body: {
+    fontFamily: typography.fontFamily.interRegular,
+    fontSize: typography.fontSize.md,
+    fontWeight: typography.fontWeight.regular,
+    color: colors.textPrimary,
+  } as TextStyle,
+
+  caption: {
+    fontFamily: typography.fontFamily.interRegular,
+    fontSize: typography.fontSize.sm,
+    fontWeight: typography.fontWeight.regular,
+    color: colors.textSecondary,
   } as TextStyle,
 };

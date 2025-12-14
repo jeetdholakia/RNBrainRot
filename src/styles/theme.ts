@@ -1,7 +1,16 @@
 /**
  * Design System Theme
  * Centralized colors, typography, and spacing for consistent styling
+ * All sizes are responsive and scale based on device dimensions
  */
+
+import {
+  scaleWidth,
+  scaleHeight,
+  scaleFont,
+  moderateScale,
+  platformValue,
+} from '../utils/responsive';
 
 export const colors = {
   // Primary
@@ -36,12 +45,12 @@ export const typography = {
     interSemiBold: 'Inter_18pt-SemiBold',
   },
   fontSize: {
-    xs: 10,
-    xxs: 12,
-    sm: 14,
-    md: 16,
-    lg: 18,
-    xl: 24,
+    xs: scaleFont(10),
+    xxs: scaleFont(12),
+    sm: scaleFont(14),
+    md: scaleFont(16),
+    lg: scaleFont(18),
+    xl: scaleFont(24),
   },
   fontWeight: {
     regular: '400' as const,
@@ -57,40 +66,61 @@ export const typography = {
 };
 
 export const spacing = {
-  xs: 2,
-  sm: 8,
-  md: 16,
-  lg: 24,
-  xl: 26,
+  xs: moderateScale(2),
+  sm: moderateScale(8),
+  md: moderateScale(16),
+  lg: moderateScale(24),
+  xl: moderateScale(26),
 };
 
 export const borderRadius = {
-  sm: 9,
-  md: 15,
-  lg: 24,
+  sm: moderateScale(9),
+  md: moderateScale(15),
+  lg: moderateScale(24),
 };
 
 export const sizes = {
   icon: {
-    sm: 20,
-    md: 24,
-    lg: 48,
+    sm: moderateScale(20),
+    md: moderateScale(24),
+    lg: moderateScale(48),
   },
   badge: {
-    sm: 18,
+    sm: moderateScale(18),
   },
   story: {
-    outer: 65,
-    inner: 59,
+    outer: moderateScale(65),
+    inner: moderateScale(59),
   },
   avatar: {
-    sm: 48,
+    sm: moderateScale(48),
   },
+  // Post image uses percentage-based width, calculated in component with aspectRatio
   postImage: {
-    width: 327,
-    height: 220,
+    // Width will be calculated as percentage in component (e.g., 90% of container)
+    // These values serve as fallback or reference for aspectRatio calculation
+    aspectRatio: 327 / 220, // ~1.486 (width/height ratio from original design)
+    baseWidth: scaleWidth(327),
+    baseHeight: scaleHeight(220),
   },
   menuButton: {
-    size: 32,
+    size: moderateScale(32),
+  },
+};
+
+/**
+ * Platform-specific adjustments
+ * Use these when components need different values on iOS vs Android
+ */
+export const platformAdjustments = {
+  // iOS typically needs slightly more padding for touch targets
+  touchTargetPadding: platformValue(
+    moderateScale(12), // iOS
+    moderateScale(8),  // Android
+  ),
+  // Font adjustments for platform differences
+  fontLineHeight: {
+    ios: 1.2,
+    android: 1.3,
   },
 };

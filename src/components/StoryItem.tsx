@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, ViewStyle, TextStyle} from 'react-native';
 import {colors, typography, spacing, sizes} from '../styles/theme';
+import {scaleFont, moderateScale} from '../utils/responsive';
 
 interface StoryItemProps {
   name: string;
@@ -48,9 +49,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.storyBorderPink,
   } as ViewStyle,
   whiteSpacing: {
-    width: sizes.story.outer - 4,
-    height: sizes.story.outer - 4,
-    borderRadius: (sizes.story.outer - 4) / 2,
+    // Responsive spacing (4px scaled)
+    width: sizes.story.outer - moderateScale(4),
+    height: sizes.story.outer - moderateScale(4),
+    borderRadius: (sizes.story.outer - moderateScale(4)) / 2,
     backgroundColor: colors.textWhite,
     justifyContent: 'center',
     alignItems: 'center',
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   initials: {
     fontFamily: typography.fontFamily.interSemiBold,
-    fontSize: 20,
+    fontSize: scaleFont(20),
     fontWeight: typography.fontWeight.semiBold,
     color: colors.textWhite,
     letterSpacing: 0.4,

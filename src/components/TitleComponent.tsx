@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
-import {spacing, sizes} from '../styles/theme';
+import {spacing, sizes, colors} from '../styles/theme';
 import {layouts, containers, badges, text} from '../styles/common';
+import {moderateScale} from '../utils/responsive';
 
 interface TitleComponentProps {
   title?: string;
@@ -28,9 +29,14 @@ export const TitleComponent: React.FC<TitleComponentProps> = ({
       <TouchableOpacity
         style={styles.envelopeButton}
         onPress={onEnvelopePress}
-        activeOpacity={0.7}>
+        activeOpacity={0.7}
+        hitSlop={{top: 8, bottom: 8, left: 8, right: 8}}>
         <View style={styles.envelopeIconContainer}>
-          <FontAwesomeIcon icon={faEnvelope} size={20} color="#E91E63" />
+          <FontAwesomeIcon
+            icon={faEnvelope}
+            size={moderateScale(20)}
+            color={colors.storyBorderPink}
+          />
         </View>
         {notificationCount > 0 && (
           <View style={styles.notificationBadge}>

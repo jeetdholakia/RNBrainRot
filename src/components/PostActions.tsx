@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   actionItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.xs,
+    gap: spacing.sm,
   } as ViewStyle,
   actionText: {
     fontFamily: typography.fontFamily.interMedium,
@@ -68,6 +68,5 @@ const styles = StyleSheet.create({
     fontWeight: typography.fontWeight.medium,
     color: colors.textSecondary,
     letterSpacing: typography.letterSpacing.normal,
-    marginLeft: spacing.xs,
   } as TextStyle,
 });

@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle} from 're
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faEllipsisH} from '@fortawesome/free-solid-svg-icons';
 import {colors, typography, spacing, sizes} from '../styles/theme';
+import {moderateScale} from '../utils/responsive';
 
 interface PostHeaderProps {
   userName: string;
@@ -40,10 +41,11 @@ export const PostHeader: React.FC<PostHeaderProps> = ({
       <TouchableOpacity
         style={styles.menuButton}
         onPress={onMenuPress}
-        activeOpacity={0.7}>
+        activeOpacity={0.7}
+        hitSlop={{top: 8, bottom: 8, left: 8, right: 8}}>
         <FontAwesomeIcon
           icon={faEllipsisH}
-          size={18}
+          size={moderateScale(18)}
           color={colors.textSecondary}
         />
       </TouchableOpacity>
@@ -62,6 +64,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.sm,
+    flex: 1,
   } as ViewStyle,
   avatar: {
     width: sizes.avatar.sm,
@@ -79,7 +82,8 @@ const styles = StyleSheet.create({
   } as TextStyle,
   textContainer: {
     justifyContent: 'center',
-    gap: 4,
+    gap: moderateScale(4),
+    flex: 1,
   } as ViewStyle,
   userName: {
     fontFamily: typography.fontFamily.interMedium,
